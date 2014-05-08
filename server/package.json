@@ -1,0 +1,14 @@
+{
+  "author": "J.-T.Brinkmann",
+  "name": "MonoponyTestServer",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "node": "~0.6.10 || 0.8 || 0.9"
+  },
+  "dependencies": {
+    "colors": "~0.6.2",
+    "socket.io": "~0.9.16",
+    "mime": "~1.2.11"
+  }
+}

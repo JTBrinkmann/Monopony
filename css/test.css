@@ -1,0 +1,27 @@
+body {
+	background: black !important;
+}
+
+h1, h1+h2 {
+	display: none;
+}
+
+
+.
+board {
+	background: black !important;
+	background-image: none !important;
+}
+.to-the-MOOOOOOOONAAAAAAAA .board {
+	background: red !important;
+}
+.image-preloader {
+	/* preloading the to-the-moonaa animation */
+	background: transparent !important;
+}
+.player, .statusBar-avatar {
+	padding-left: 60px !important;
+	width: 0px !important;
+	overflow: hidden !important;
+	background:  green !important;
+}

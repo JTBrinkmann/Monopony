@@ -1,0 +1,7 @@
+@media print {
+	.board {
+		background-image: url("../images/board.jpg") !important;
+		background-repeat: no-repeat !important;
+		background-size: 894px !important;
+	}
+}

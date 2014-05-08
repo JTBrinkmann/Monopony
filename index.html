@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Monopony</title>
+
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/game.css"/>
+	<link rel="stylesheet" type="text/css" href="css/page.css" />
+</head>
+<body>
+	<h1 class="wordart" title="Monopony">M&ouml;n&ouml;p&ouml;ny - by Brinkie Pie</h1>
+	<h2>a free Monopoly&trade; inspired game with ponies!</h2>
+	<div id="game" class="monopony">
+		<!-- .statusBar --><div class="position-wrapper">
+			<div class="statusBar">
+				<!-- Template:
+					<div class="statusBar-player">
+						<img src="images/avatars/#####.png" class="statusBar-avatar">
+						<div class="statusBar-playerName">######</div>
+						<div class="statusBar-bits">### bits</div>
+						<div class="statusBar-location">(###)</div>
+
+						<div class="statusBar-remove-player">remove</div>
+					</div>
+					...
+				-->
+				<div class="statusBar-player statusBar-newPlayer">
+					<img src="images/avatars/newPlayer.png" class="statusBar-avatar">
+					<div class="statusBar-newPlayer-text">add new player</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="position-wrapper">
+			<div class="inputField-wrapper">
+				<input class="inputField" />
+				<div class="inputField-error-message"></div>
+				<div class="inputField-buttons-wrapper">
+					<div class="inputField-buttons"></div>
+				</div>
+			</div>
+		</div>-->
+		<!-- .avatarPicker --><div class="position-wrapper">
+			<div class="avatarPicker">
+				<div class="avatarPicker-title">
+					<div class="avatarPicker-img-wrapper"></div>
+					<textarea class="avatarPicker-custom-input" placeholder="enter the URL to your custom avatar image here. Note: it should have a transparent background!"></textarea>
+					<button class="avatarPicker-custom-btn">Use custom Avatar</button>
+				</div>
+				<!-- Template
+					<figure>
+						<img src="/images/Twilight.png">
+						<figcaption>Twilight</figcaption>
+					</figure>
+				-->
+			</div>
+		</div>
+		<!-- .console --><div class="position-wrapper">
+			<div class="console-wrapper">
+				<div class="console"></div>
+			</div>
+		</div>
+		<div class="coins">
+			<div class='coin'></div>
+			<div class='coin'></div>
+			<div class='coin'></div>
+			<div class='coin'></div>
+			<div class='coin'></div>
+		</div>
+		<!-- .buttons --><div class="position-wrapper">
+			<div class="buttons-wrapper">
+				<div class="buttons-text"></div>
+				<div class="input-error-text"></div>
+				<div class="buttons"></div>
+			</div>
+		</div>
+		<div class="ownershipToken-container"></div>
+		<!--
+			<div class="position-wrapper">
+				<img class="player" src="images/avatars/{AVATAR}.png">
+			</div>
+		-->
+		<!-- .mini-card-communityChestCard --><div class="position-wrapper">
+			<div class="mini-card-communityChestCard"></div>
+		</div>
+		<!-- .mini-card-chanceCard --><div class="position-wrapper">
+			<div class="mini-card-chanceCard"></div>
+		</div>
+		<!-- .mini-card-floating --><div class="position-wrapper">
+			<div class="mini-card-floating"></div>
+		</div>
+		<!-- .card --><div class="position-wrapper">
+			<div class="card">
+				<img class="card-image">
+				<h3 class="card-title"></h3>
+				<p class="card-text"></p>
+				<button class="button card-button"></button>
+			</div>
+		</div>
+
+		<!-- .business-menu --><div class="position-wrapper">
+			<div class="business-menu">
+				<!--Template:
+				<div class="business-field-menu">
+					<div class="business-field-icon">3</div>
+					<span class="business-field-name">Appleloosa</span>
+					<span class="business-field-owner">Brinkie Pie</span>
+					<div class="business-field-slider-wrapper">
+		 				<div class="business-field-slider">
+		 					<div class="business-field-slider-thumb"></div>
+		 				</div>
+		 				<span class="business-field-slider-label">hotel</span>
+						<span class="business-field-slider-label">4 houses</span>
+						<span class="business-field-slider-label">3 houses</span>
+						<span class="business-field-slider-label">2 houses</span>
+						<span class="business-field-slider-label">1 house</span>
+						<span class="business-field-slider-label">no houses</span>
+						<span class="business-field-slider-label">mortgaged</span>
+					</div>
+				</div>
+				<div class="business-field-menu">
+					<div class="business-field-icon">3</div>
+					<span class="business-field-name">Appleloosa</span>
+					<span class="business-field-owner">evil canpan multiline</span>
+					<button class="business-field-trade">Trade</button>
+				</div>
+				-->
+			</div>
+		</div>
+
+		<div class="cloak-wrapper">
+			<!-- .cloak1 --><div class="position-wrapper">
+				<div class="cloak"></div>
+			</div>
+			<!-- .cloak2 --><div class="position-wrapper">
+				<div class="cloak"></div>
+			</div>
+			<!-- .cloak3 --><div class="position-wrapper">
+				<div class="cloak"></div>
+			</div>
+			<!-- .cloak4 --><div class="position-wrapper">
+				<div class="cloak"></div>
+			</div>
+		</div>
+		<div class="image-preloader"></div>
+	</div>
+
+	<div id="sidebar">
+		<div class="module">
+			<h3>Note:</h3>
+			This game is finally in beta!<br>
+			But still, there is some work to do and this is not yet finished.<br>
+			Most of the game already works, it is already playable.
+		</div>
+		<div class="module">
+			<h3>ToDo:</h3>
+			<ul>
+				<li>*This ToDo list* (yeah I know, sorry)</li>
+				<li>better UI, resize-able / mobile version</li>
+				<li>Multiplayer mode (though basic gameplay works, buying/selling houses etc isn't yet implemented)</li>
+				<li>a multiplayer server which is online 24/7</li>
+				<li>custom maps</li>
+				<li>small bugfixes</li>
+			</ul>
+		</div>
+		<div class="module">
+			<h3>What already works:</h3>
+			<ul>
+				<li>Nearly everything. Feel free to try it out =)</li>
+			</ul>
+		</div>
+	</div>
+	<div style="clear: both"></div>
+
+	<div class="content">
+		<h2>History</h2>
+		<p>
+			This game is developed and maintained by <b>Brinkie Pie</b>.<br>
+			It all started with a gamejam. <a href="https://github.com/TATdk">TAT</a> and <a href="https://github.com/Colgate">Colgate</a> planned on doing a livestream showing them coding an online game called "Monopony", based on the custom Monopoly board by sup3rgh0st. They initially did some progress (displaying the board, having a zoom-in/-out functionality and data of the positions of the fields) but after a few hours the connection to Colgate was lost. TAT continued for a few hours alone, before aborting the project until he could reach Colgate again&hellip; sadly they never continued. This is were I - Brinkie Pie - kicked in. I continued the project on my own but quickly realised, that this game needs more than a few hours of coding. Thus, many days were spend and the little TAT and Colgate did was <b>completely</b> rewritten and improved. The only thing that remained was the position of the fields.
+		</p>
+		<p>
+			As I noticed how much work this got, I looked out for help by friends. Thankfully, <b>Canpan</b> offered his help. He added the raw data for the cards and fields (what is a utility field, what isn't, mortages, house costs, rent, etc) which I then could implement. He also bug-tested the game and helped me fix many problems.<br>
+			And now, the game is what you can see here! Well most likely THIS isn't the most up to date version, but good enough
+		</p>
+
+		<h2>What YOU can do</h2>
+		<p>
+			First, I want to thank you for your interest!<br>
+			Of course you can help developing this game, if you want to. I usually have some simple tasks anyone (even without coding skills) can do. Some of which simply require decision making or testing. Feel free to contact me :D<br>
+			Or - because I won't do any newsletter - you could always contact me if you want me to inform you as soon as this game is finished.<br>
+			<br>
+			You can contact me under <a href=# onfocus="this.onmouseover()" onmouseover="this.href='mailto:'+(this.innerText=this.innerText.replace(/\u202e|\u202d/g,'').split('').reverse().join(''));this.onmouseover=null;this.onfocus=null">&#x202e;moc.liamg@eipeiknirb&#x202d;</a>
+		</p>
+	</div>
+
+	<div id="credits">
+		<h3>credits</h3>
+		<p>
+			This is a free clone of the popular game Monopoly.<br>
+			Monopoly and My Little Pony are registered trademarks of <a href="http://www.hasbro.com/">Hasbro, Inc.</a><br>
+			Monopony is not affiliated with Hasbro in any way.<br>
+			All trademarks and copyrights are the property of their respective owners. All rights reserved.<br>
+		</p>
+		<p>
+			The <a href="http://sup3rgh0st.deviantart.com/art/Monopony-A-My-Little-Pony-Themed-Monopoly-Board-317971406">super awesome board image</a> is by <a href="http://sup3rgh0st.deviantart.com/">sup3rgh0st</a>
+		</p>
+		<p>
+			The pony avatars are mostly from <a href="http://desktopponies.bugs3.com/index.php">DesktopPonies</a>. For the complete list of contributors, please see <a href="https://docs.google.com/document/d/1dJp8_k0mNvydyUQbLIeRiH4HJCvAClhU0tlBHlLDvVI/edit">this list</a> (note: not all sprites from the DesktopPonies pack are used in Monopony).<br>
+			The <abbr title="Original Characters">OCs</abbr> are by their respective owners.
+		</p>
+		<!--<p>
+			Some icons on this page are by <a href="http://www.fatcow.com/free-icons">FatCow</a><br>
+		</p>-->
+		<p>
+			Besides what is mentioned above, all rights are reserved.<br>
+			&copy;Brinkie Pie 2013
+		</p>
+	</div>
+	<!-- scripts -->
+	<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+	<script type="text/javascript" src="js/jquery/1.10.2/jquery.min.js"></script>
+
+
+	<script type="text/javascript" src="js/game.js"></script>
+</body>
+</html>

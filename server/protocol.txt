@@ -1,0 +1,131 @@
+/*
+#= OLD API =
+Client -> Server = [ gotoLobby(), startSP(), createRoom(reqID, options), joinRoom(reqID, id), request_dices(reqNum), changeName(newName), changeAvatar(newAvatar), button(reqNum, btn) ]
+Client (host) -> Server = [ ..., startGame(), kick(playerID), updateOptions(options) ]
+
+Server -> Client (SP) = [ ]
+Server -> Client (lobby) = [ ok(reqID, data), notOK(reqID, reason), roomList(rooms), roomOpened(id, name), roomClosed(id), gameStarted(id) ]
+Server -> Client (ingame) = [ ok(reqID, data), notOK(reqID, reason), gameStarted(id), dice(reqNum, dice1, dice2), button(reqNum, btn), buttonCheck(reqNum, btn, playerID), playerLeftRoom(id, reason), playerJoinedRoom(data), roomOpened(id, roomName), kicked(reason), roomClosed(id, reason), playerChangedName(id, newName), playerChangedAvatar(id, newAvatar), chat(fromID, msg), updateOptions(options) ]
+Server -> Client (host) = [ ..., buttonCheck(reqNum, btn, playerID) ]
+*/
+
+## PROTOCOL ##
+/*
+# legend #
+[state condition]
+> client to server
+< server to client
+<- direct response from server
+<= direct response from server to every client in the room
+! not yet implemented
+
+statements with same indent MIGHT happen (parallelly)
+statements with deeper indentation should happen in consequitive order
+*/
+#=============#
+
+[default] # \loggedOut
+> connect[:username:passwordHash] # ! autologin: not yet implemented
+	<- ok:userid
+		<- lobby:roomList:userInLobby
+			$state = \lobby
+
+
+[*]
+> disconnect
+> chat:msg
+! > pm:userid:msg
+
+< chat:msg:userID:time
+
+
+
+
+[lobby]
+! > login:username:passwordHash
+	<- error:["incorrect password", "user does not exist"]
+	<- ok:avatar:name[:currentRoom]
+		if currentRoom
+			$state = \ingame
+			<- roomGameData:data
+
+> changeName:newname
+
+> changeAvatar:newAvatar
+
+> createRoom:reqID:roomOptions
+	<- newRoom:roomID
+		$isMod = true
+		$state = \ingame
+
+> joinRoom:reqID:roomID
+	<- ok:userInRoom:roomOptions[:isMod]
+		$isMod = isMod || false
+		$state = \ingame
+		! <- roomGameData:data
+	<- error:["room does not exist"]
+
+
+< roomCreated:roomID:roomName
+< roomClosed:roomID
+< roomStartedGame:roomID
+< otherUserJoined:userID:userData[:fromRoomID] # if `fromRoomID` is set, the usercount of that room is reduced by 1
+< otherUserLeft:userID[:toRoomID] # if `toRoomID` is set, the usercount of that room is increased by 1
+< otherUserUpdates:userID:userData
+
+
+[ingame && $isMod]
+> startGame
+> kick:username[:reason]
+> ban:username[:reason]
+
+[ingame]
+# meta
+> changeName:reqID:newname
+	<- error:"name taken"
+	<- OK:reqID
+> joinLobby:reqID:username
+	<- lobby:grouplist:userInLobby
+
+< otherUserJoined:userID:userData[:fromRoomID] # if `fromRoomID` is set, the usercount of that room is reduced by 1
+< otherUserLeft:userID[:toRoomID] # if `toRoomID` is set, the usercount of that room is increased by 1
+< otherUserUpdates:userID:userData
+		$state = \lobby
+
+
+< kick:modUsername:reason
+	$state = \default
+< ban:modUsername:reason
+	$banned ++= roomID
+	$state = \default
+
+# ingame functions
+> request_dices
+	<= dices:d1:d2
+> button:btn
+	<= button:userID:btn
+
+> endTurn
+	<= endTurn:userID
+> setFieldHouses:fieldID:houses
+
+# trading
+/*
+> trade:reqID:sellingOrBuying:otherUserID:subject:priceOffer
+	# server to other client: tradeOffer
+	< tradeAccept
+
+	< tradeDeny
+
+	< trade:reqID:sellingOrBuying:otherUserID:subject:priceOffer
+		[recursive]
+
+< tradeOffer:reqID:sellingOrBuying:offeringUserID:subject:priceOffer
+	> tradeAccept:subject
+
+	> tradeDeny:subject
+
+	> trade:reqID:sellingOrBuying:otherUserID:subject:priceOffer
+		[recursive]
+*/
+< endTurn:userID

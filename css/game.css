@@ -1,0 +1,497 @@
+/*
+layers (z-index):
+1: .coin
+2: .console-wrapper, .statusBar
+3: .cloak
+4: .buttons-wrapper
+5: .card
+6: .trading .statusBar
+7: .business-menu, .avatarPicker
+8: .buttons-text, .input-error-text
+*/
+#game {
+  width: 900px;
+  height: 900px;
+}
+.position-wrapper {
+  width: 0;
+  height: 0;
+  overflow: visible;
+}
+.monopony {
+  width: 900px;
+  height: 900px;
+  overflow: hidden;
+  background-image: url("../images/board.jpg");
+  background-repeat: no-repeat;
+  background-size: 900px;
+}
+.monopony.zoomed {
+  background-size: 1782px;
+}
+.monopony.to-the-MOOOOOOOONAAAAAAAA {
+  background: url("../images/to-the-MOOOOOOOONAAAAAAAA.gif");
+  background-size: 900px 900px;
+}
+.monopony.to-the-MOOOOOOOONAAAAAAAA .buttons,
+.monopony.to-the-MOOOOOOOONAAAAAAAA .console-wrapper,
+.monopony.to-the-MOOOOOOOONAAAAAAAA .player,
+.monopony.to-the-MOOOOOOOONAAAAAAAA .statusBar,
+.monopony.to-the-MOOOOOOOONAAAAAAAA .mini-card-communityChestCard,
+.monopony.to-the-MOOOOOOOONAAAAAAAA .mini-card-chanceCard,
+.monopony.to-the-MOOOOOOOONAAAAAAAA .ownershipToken {
+  visibility: hidden;
+}
+.monopony button {
+  height: 100px;
+  padding: 0 20px;
+  margin-right: 5px;
+  background: rgba(130, 40, 255, 0.85);
+  border: 3px solid #8228ff;
+  font-size: 2em;
+  color: white;
+  text-shadow: 0 0 5px black;
+}
+.monopony button[disabled] {
+  background: rgba(90, 80, 120, 0.9);
+  border-color: #333;
+}
+.buttons-wrapper {
+  position: relative;
+  width: 648px;
+  height: auto;
+  text-align: center;
+  left: 126px;
+  top: 370px;
+  z-index: 4;
+}
+.buttons-wrapper .buttons > .inputField {
+  height: 80px;
+  margin: 0;
+  font-size: 3em;
+}
+.buttons-wrapper .buttons > .inputField[type="number"] {
+  width: 130px;
+  padding-right: .5em;
+  text-align: right;
+}
+.buttons-wrapper .buttons-text,
+.buttons-wrapper .input-error-text {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  min-height: 1.5em;
+  z-index: 8;
+}
+.buttons-wrapper .input-error-text,
+.buttons-wrapper .input-incorrect .buttons-text {
+  display: none;
+}
+.buttons-wrapper .input-incorrect .input-error-text,
+.buttons-wrapper .buttons-text {
+  display: block;
+}
+.input-incorrect,
+.errorneousName .inputField {
+  color: #b94a48;
+  border-color: #e9322d;
+  box-shadow: 0 0 6px #f8b9b7;
+  -moz-box-shadow: 0 0 6px #f8b9b7;
+  -webkit-box-shadow: 0 0 6px #f8b9b7;
+}
+.image-preloader {
+  background: url("../images/to-the-MOOOOOOOONAAAAAAAA.gif");
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.player {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  /*
+	transition: top .5s ease-out, left .5s ease-out;
+	-webkit-transition: top .5s ease-out, left .5s ease-out;
+	-moz-transition: top .5s ease-out, left .5s ease-out;
+	-o-transition: top .5s ease-out, left .5s ease-out;
+	*/
+  /*
+	&.no-easing {
+		transition: top .5s linear, left .5s linear;
+		-webkit-transition: top .5s linear, left .5s linear;
+		-moz-transition: top .5s linear, left .5s linear;
+		-o-transition: top .5s linear, left .5s linear;
+	}
+	*/
+}
+.zoomed .player {
+  width: 120px;
+  height: 120px;
+}
+.player.gameover {
+  visibility: hidden;
+}
+.statusBar {
+  position: relative;
+  text-align: center;
+  top: 125px;
+  left: 360px;
+  width: 404px;
+  height: 240px;
+  padding-top: 10px;
+  padding-left: 5px;
+  overflow-y: auto;
+  z-index: 2;
+  /*&.statusBar-current-player {
+		text-align: center;
+		width: 100%;
+		margin-bottom: 10px;
+	}*/
+}
+.statusBar .statusBar-newPlayer,
+.statusBar .statusBar-remove-player,
+.two-players .statusBar .statusBar-remove-player {
+  display: none;
+}
+.setup .statusBar .statusBar-remove-player,
+.setup.multiplayer.two-players .statusBar .statusBar-remove-player {
+  display: inline-block;
+}
+.statusBar .statusBar-newPlayer-text {
+  color: #444;
+  margin-top: 19px;
+}
+.statusBar .statusBar-player,
+.statusBar .highlighting-player .statusBar .statusBar-player {
+  float: left;
+  width: 180px;
+  height: 60px;
+  margin-right: 8px;
+  margin-bottom: 20px;
+  padding-right: 5px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.statusBar .statusBar-player.active,
+.statusBar .highlighting-player .statusBar .statusBar-player.active,
+.statusBar .statusBar-player.highlight,
+.statusBar .highlighting-player .statusBar .statusBar-player.highlight {
+  background: #fff;
+  box-shadow: 0 0 5px #6428ff, 0 0 5px #6428ff;
+}
+.statusBar .statusBar-player.errorneousName,
+.statusBar .highlighting-player .statusBar .statusBar-player.errorneousName,
+.statusBar .statusBar-player.gameover,
+.statusBar .highlighting-player .statusBar .statusBar-player.gameover {
+  background: rgba(255, 170, 160, 0.7);
+}
+.statusBar .statusBar-player .statusBar-playerName,
+.statusBar .highlighting-player .statusBar .statusBar-player .statusBar-playerName,
+.statusBar .statusBar-player .statusBar-current-player-name,
+.statusBar .highlighting-player .statusBar .statusBar-player .statusBar-current-player-name {
+  font-weight: bold;
+  margin-right: 3px;
+  overflow: hidden;
+  height: 1.3em;
+  text-align: center;
+}
+.statusBar .statusBar-player input.statusBar-playerName,
+.statusBar .highlighting-player .statusBar .statusBar-player input.statusBar-playerName {
+  width: 100px;
+}
+.statusBar .statusBar-player .statusBar-avatar,
+.statusBar .highlighting-player .statusBar .statusBar-player .statusBar-avatar {
+  height: 60px;
+  max-width: 60px;
+  float: left;
+  margin-right: 5px;
+}
+.statusBar .statusBar-player .statusBar-location,
+.statusBar .highlighting-player .statusBar .statusBar-player .statusBar-location {
+  font-size: .7em;
+}
+.statusBar .statusBar-player .statusBar-remove-player,
+.statusBar .highlighting-player .statusBar .statusBar-player .statusBar-remove-player {
+  color: #444444;
+}
+.avatarPicker {
+  position: relative;
+  text-align: center;
+  display: none;
+  padding: 125px;
+  width: 775px;
+  height: 775px;
+  text-align: left;
+  background: rgba(50, 50, 50, 0.5);
+  z-index: 7;
+}
+.avatarPicker .avatarPicker-title {
+  height: 125px;
+}
+.avatarPicker .avatarPicker-img-wrapper {
+  float: left;
+  width: 120px;
+  text-align: center;
+}
+.avatarPicker .avatarPicker-custom-input {
+  visibility: hidden;
+}
+.avatarPicker.customAvatar .avatarPicker-custom-input {
+  visibility: visible;
+  float: left;
+  height: 90px;
+  width: 330px;
+  margin: 10px 20px 0 20px;
+  overflow: auto;
+  word-break: break-all;
+}
+.avatarPicker.customAvatar .avatarPicker-custom-btn {
+  margin-left: 0;
+}
+.avatarPicker .avatarPicker-custom-btn {
+  float: left;
+  width: 140px;
+  margin: 10px 0;
+  margin-left: 200px;
+}
+.avatarPicker .avatarPicker-avatar {
+  float: left;
+  height: 145px;
+  width: 124px;
+  margin: 8px 19px;
+  background: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+.avatar {
+  height: 120px;
+  max-width: 120px;
+}
+.colorPicker-wrapper {
+  width: 0;
+  height: 0;
+  overflow: visible;
+  float: left;
+}
+.colorPicker-wrapper .colorPicker {
+  width: 185px;
+  height: 60px;
+  padding: 0;
+  margin: 0;
+}
+.colorPicker-wrapper .colorPicker .colorPicker-color {
+  position: relative;
+  width: 0;
+  height: 100%;
+  float: left;
+  -webkit-transition: width 0.5s ease-out;
+}
+.colorPicker-wrapper .colorPicker .colorPicker-color:hover {
+  top: -10px;
+  height: 80px;
+}
+.colorPicker-wrapper .colorPicker.colorPicking .colorPicker-color {
+  width: 14px;
+}
+.console-wrapper {
+  position: relative;
+  text-align: center;
+  left: 130px;
+  top: 500px;
+  width: 400px;
+  height: 230px;
+  overflow: auto;
+  z-index: 2;
+}
+.card {
+  position: relative;
+  top: 280px;
+  left: -230px;
+  width: 190px;
+  min-height: 300px;
+  padding: 0 10px 10px;
+  background: white;
+  border: 10px solid #444;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 5;
+}
+.card .card-image {
+  max-width: 190px;
+  max-height: 130px;
+  text-align: center;
+}
+.mini-card-communityChestCard,
+.mini-card-chanceCard {
+  position: relative;
+  width: 175px;
+  height: 175px;
+}
+.mini-card-communityChestCard {
+  top: 175px;
+  left: 175px;
+  background: url(../images/communityChestCard.png);
+}
+.mini-card-chanceCard {
+  top: 544px;
+  left: 542px;
+  background: url(../images/chanceCard.png);
+}
+.coins {
+  height: 0;
+}
+.coins .coin {
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  width: 9px;
+  height: 14px;
+  background: url(../images/coin1.gif);
+}
+.coins .coin.animate {
+  transition: top 0.3s ease-out, left 0.3s ease-out, opacity 0.5s ease-out;
+  -webkit-transition: top 0.3s ease-out, left 0.3s ease-out, opacity 0.5s ease-out;
+  -moz-transition: top 0.3s ease-out, left 0.3s ease-out, opacity 0.5s ease-out;
+  -o-transition: top 0.3s ease-out, left 0.3s ease-out, opacity 0.5s ease-out;
+}
+.ownershipToken-wrapper {
+  height: 0;
+}
+.ownershipToken-wrapper .ownershipToken {
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+}
+.ownershipToken-wrapper .ownershipToken.ownershipToken-vertical {
+  width: 9px;
+  height: 29px;
+  padding-left: 4px;
+  padding-top: 6px;
+  line-height: 22px;
+}
+.ownershipToken-wrapper .ownershipToken.ownershipToken-horizontal {
+  width: 35px;
+  height: 15px;
+  line-height: 16px;
+}
+.ownershipToken-wrapper .ownershipToken.mortgaged {
+  background-image: url(../images/mortgaged-stripes.png);
+}
+.business-menu {
+  display: none;
+  position: relative;
+  top: 125px;
+  left: 126px;
+  width: 648px;
+  height: 285px;
+  text-align: center;
+  text-shadow: 0 0 4px black;
+  z-index: 6;
+  /*
+	.business-field-icon {
+	}
+	.business-field-icon--1::after	{ content: "M"; }
+	.business-field-icon-0::after	{ content: "-"; }
+	.business-field-icon-1::after	{ content: "1"; }
+	.business-field-icon-2::after	{ content: "2"; }
+	.business-field-icon-3::after	{ content: "3"; }
+	.business-field-icon-4::after	{ content: "4"; }
+	.business-field-icon-5::after	{ content: "H"; }
+	*/
+}
+.business-menu .business-field-menu {
+  display: inline-table;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 147px;
+  height: 220px;
+  margin-right: 20px;
+  padding: 10px 0;
+  text-align: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.business-menu .business-field-highlighted {
+  border: 5px solid rgba(0, 0, 0, 0.7);
+  border-top: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.business-menu .business-field--text,
+.business-menu .business-field-name,
+.business-menu .business-field-owner,
+.business-menu .business-field-slider-label,
+.business-menu .business-field-price-label,
+.business-menu .business-field-price {
+  display: block;
+  margin: 0 10px;
+  hyphens: auto;
+  -moz-hyphens: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.business-menu .business-field-name {
+  font-size: 1.3em;
+}
+.business-menu .business-field-owner {
+  font-size: 1.1em;
+  height: 1.4em;
+}
+.business-menu .business-field-slider-wrapper {
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.business-menu .business-field-slider {
+  border: 0 solid transparent;
+  border-top: 140px solid red;
+  border-left-width: 10px;
+  float: right;
+  border-right-width: 10px;
+  width: 0;
+  margin-right: 5px;
+}
+.business-menu .business-field-slider-thumb {
+  position: relative;
+  top: -140px;
+  left: -15px;
+  width: 30px;
+  background: lime;
+  height: .5em;
+  margin-top: .25em;
+  cursor: pointer;
+}
+.business-menu .business-field-slider-label {
+  margin-right: 0;
+}
+.business-menu .business-field-group-uncomplete .business-field-slider-label-house {
+  color: #aaa;
+  text-decoration: line-through;
+}
+.business-menu .board .business-field-trade {
+  height: 80px;
+  margin-top: 35px;
+  width: 120px;
+}
+.business-menu .business-field-price {
+  font-size: 1.3em;
+}
+.business-menu .business-field-owned .business-field-trade-btn {
+  font-size: 20px;
+  padding: 0 16px;
+  margin: 0;
+  height: 28px;
+  width: 125px;
+}
+.trading .statusBar {
+  z-index: 6;
+}
+.trading .business-menu {
+  text-align: left;
+  width: 230px;
+}
+.trading .business-field-menu {
+  position: relative;
+  top: 0;
+}
+.cloak {
+  position: relative;
+  background: rgba(50, 50, 50, 0.5);
+  z-index: 3;
+}

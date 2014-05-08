@@ -1,0 +1,77 @@
+html {
+	height:100%;
+}
+body {
+	margin:0;
+	padding:5px;
+	height:100%;
+}
+
+/* fix bootstrap messing up with <img>s */
+img {
+	max-width: inherit;
+}
+
+.position-wrapper {
+	width: 0;
+	height: 0;
+	overflow: visible;
+}
+
+#sidebar {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #666;
+	margin-bottom: 5px;
+}
+
+h1, h2, h3 {
+	line-height: 20px;
+}
+
+
+@media (min-width: 1200px) {
+	#game {
+		float: left;
+	}
+	#sidebar {
+		position: absolute;
+		left: 920px;
+		right: 5px;
+		border-bottom: none;
+	}
+	body {
+		width: 900px;
+	}
+}
+
+
+
+/* YOLO */
+.wordart {
+	color: #333;
+	-webkit-text-fill-color: transparent;
+	position: relative;
+	display: inline-block;
+	font: bold 48px "Arial Narrow", sans-serif;
+}
+.wordart:before {
+	content: attr(title);
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	background: -webkit-linear-gradient(left, rgb(176,9,151) 0%, rgb(227,33,107) 10%, rgb(249,96,30) 25%, rgb(255,180,18) 40%, rgb(255,216,45) 50%, rgb(185,221,23) 61%, rgb(65,160,60) 75%, rgb(19,54,180) 90%, rgb(116,27,157) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.wordart:after {
+	content: attr(title);
+	position: absolute;
+	z-index: 199;
+	left: -6px;
+	bottom: -10px;
+	z-index: 1;
+	-webkit-text-fill-color: #000;
+	-webkit-transform: skew(40deg, 0deg) scaleY(.5);
+	opacity: .3;
+}
